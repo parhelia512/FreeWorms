@@ -10,7 +10,7 @@ namespace FreeWorms.GameManager
     {
 
         public Player[] Players;
-        public int PlayerIndex;
+        public int PlayerIndex, WormIndex;
         public bool NextTurn, IsStarted;
         public WormState WormState;
 
@@ -20,7 +20,7 @@ namespace FreeWorms.GameManager
             PlayerIndex = 0;
             NextTurn = false;
             IsStarted = false;
-            
+            WormIndex = 0;
 
         }
 
@@ -33,7 +33,11 @@ namespace FreeWorms.GameManager
 
         }
 
+        public void Update() {
 
-
+            Worm worm = Players[PlayerIndex].Team.Worms[WormIndex];
+            if (WormState.isDead(worm))
+                Players[PlayerIndex].Team.Worms[WormIndex] = null;
+        }
     }
 }
